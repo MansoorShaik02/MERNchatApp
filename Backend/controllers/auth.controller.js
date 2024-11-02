@@ -5,9 +5,9 @@ import genToken from "../utils/generateToken.js"
 export const signup = async (req, res) => {
     try {
         const { fullName, username, password, confirmpassword, gender } = req.body
-        if (password !== confirmpassword) {
-            return res.status(400).json({ error: "Passwords don't match" })
-        }
+        // if (password !== confirmpassword) {
+        //     return res.status(400).json({ error: "Passwords don't match" })
+        // }
         const existuser = await User.findOne({ username })
         if (existuser) {
             return res.status(400).json({ error: "Username already exists" })
@@ -28,7 +28,7 @@ export const signup = async (req, res) => {
 
         if (newUser) {
             genToken(newUser._id, res);
-            await newUser.save(newUser._id, res)
+            await newUser.save()
 
             res.status(201).json({
                 _id: newUser._id,
