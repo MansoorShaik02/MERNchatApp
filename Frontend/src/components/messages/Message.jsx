@@ -10,7 +10,7 @@ const Message = ({ message }) => {
   const { selectedConversation } = useConversation();
   // eslint-disable-next-line react/prop-types
   const fromMe = message.senderId === authUser._id;
-
+  const shakeClass = message.shouldShake ? "shake" : "";
   const formattedTime = extractTime(message.createdAt);
   const chatClassName = fromMe ? "chat-end" : "chat-start";
   const profilePic = fromMe
@@ -25,7 +25,7 @@ const Message = ({ message }) => {
           <img alt="Tailwind CSS chat bubble component" src={profilePic} />
         </div>
       </div>
-      <div className={`chat-bubble text-white ${bubbleBgColor} `}>
+      <div className={`chat-bubble text-white ${bubbleBgColor} ${shakeClass}`}>
         {message.message}
       </div>
       <div className="chat-footer opacity-50 text-xs flex gap-1 items-center">

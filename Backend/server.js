@@ -6,8 +6,9 @@ import connectToMongoDB from "./db/connectToMongoDB.js";
 import messageRoutes from './Routes/message.routes.js'
 import userRoutes from './Routes/user.routes.js'
 import cors from 'cors';
+import { app, server } from '../Backend/socket/socket.js'
 const PORT = process.env.PORT || 5000
-const app = express();
+
 
 const corsOptions = {
     origin: 'http://localhost:3000', // Your frontend domain, adjust if different
@@ -26,7 +27,7 @@ app.use("/api/users", userRoutes)
 // })
 
 
-app.listen(PORT, () => {
-    connectToMongoDB()
-    console.log(`server running on port ${PORT}`)
+server.listen(PORT, () => {
+    connectToMongoDB();
+    console.log(`server running on port33333 ${PORT}`)
 });
